@@ -18,7 +18,7 @@ This simple tool visulaizes the budget scenarios that might support The Next Gre
 <br>(3) the current wedge for the 'rest of APD', not including JWST and WFIRST development costs, remains constant at $700M. 
 <br>(4) all calculations are done in constant, FY20 dollars without inflation.  
 <br>
-<br> These hypotetical scenarios are meant to help the user explore how NASA Astrophysics funding might be able to support three long-lived flagship observatories that operate simultaneously. These can be any missions you like, in any order, at any price. The "Years of Simultaneous Operation" reported measures the number of years from the launch of Mission 3 to the end of Mission 1's operational lifetime, during which all three Observatories are available. 
+<br> These hypotetical scenarios are meant to help the user explore how NASA Astrophysics funding might be able to support three long-lived flagship observatories that operate simultaneously. The launch years of each mission are marked by the inverted triangles, and the horizontal bars show each mission's operational lifetime. These can be any missions you like, in any order, at any price. The "Years of Simultaneous Operation" reported measures the number of years from the launch of Mission 3 to the end of Mission 1's operational lifetime, during which all three Observatories are available. 
 
 <br> <br> 
 You are welcome to save plots from this tool using the "disk" icon in the bokeh toolbar and use them in any venue with credit to Jason Tumlinson, Grant Tremblay, and www.greatobservatories.org.
