@@ -1,8 +1,8 @@
 attrs:
     Figure:
-        background_fill_color: '#FFFFFF'
-        border_fill_color: rgba(0, 0, 255, 0.0)
-        outline_line_color: '#000000'
+        background_fill_color: rgba(255, 255, 255, 0.2)
+        border_fill_color: rgba(255, 255, 255, 0)
+        outline_line_color: rgba(255, 255, 255, 0)
     Text: 
         text_font: 'PT Serif' 
         text_font_style: 'bold' 
@@ -18,3 +18,5 @@ attrs:
         grid_line_alpha: .3
     Title:
         text_color: "white"
+    Tab: 
+        text_font: 'PT Serif' 

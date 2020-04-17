@@ -132,6 +132,10 @@ h6 {
   font-color: #FF0000; 
   color:#f00;
 }
+.bk-root .bk-slider-parent { 
+color:#FF0000; 
+font-color:#FF0000;
+}
 /* This controls sliders, etc if they are inside tabs */ 
 .bk-bs-tab-content {
   background-color: #FF0000;

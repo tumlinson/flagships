@@ -11,19 +11,26 @@ def info():
 
     str = """
 <div align="left">
-This simple tool visulaizes the budget scenarios that might support The Next Great Observatories. 
-       The basic assumptions are:
+This simple tool visualizes the budget scenarios that might support The Next Great Observatories. 
+<br>The basic assumptions are:
 <br>(1) the initial 'flagship wedge is the current sum of WFIRST + JWST ($700 M in FY20).
 <br>(2) the new 'flagship wedge' controlled by the slider begins in 2026. 
 <br>(3) the current wedge for the 'rest of APD', not including JWST and WFIRST development costs, remains constant at $700M. 
 <br>(4) all calculations are done in constant, FY20 dollars without inflation.  
 <br>
-<br> These hypotetical scenarios are meant to help the user explore how NASA Astrophysics funding might be able to support three long-lived flagship observatories that operate simultaneously. The launch years of each mission are marked by the inverted triangles, and the horizontal bars show each mission's operational lifetime. These can be any missions you like, in any order, at any price. The "Years of Simultaneous Operation" reported measures the number of years from the launch of Mission 3 to the end of Mission 1's operational lifetime, during which all three Observatories are available. 
+<br> These hypothetical scenarios are meant to help the user explore how NASA Astrophysics 
+funding might be able to support three long-lived flagship observatories that operate 
+simultaneously. The launch years of each mission are marked by the inverted triangles, 
+and the horizontal bars show each mission's operational lifetime. These can be any 
+missions you like, in any order, at any price. The "Years of Simultaneous Operation" 
+reported measures the number of years from the launch of Mission 3 to the end of 
+Mission 1's operational lifetime, during which all three Observatories are available. 
 
 <br> <br> 
-You are welcome to save plots from this tool using the "disk" icon in the bokeh toolbar and use them in any venue with credit to Jason Tumlinson, Grant Tremblay, and www.greatobservatories.org.
+You are welcome to save plots from this tool using the "disk" icon in the bokeh 
+toolbar and use them in any venue with credit to "Jason Tumlinson/Grant Tremblay/www.greatobservatories.org".
 <br> <br> 
-Credits: adapted from Tumlinson et al., "The Next Great Observatories: How Can We Get There?", an APC white paper submitted to Astro2020 (<a href="http://ui.adsabs.harvard.edu/abs/2019BAAS...51g.173T/abstract">link</a>). Code in python / bokeh by <a href='http://jt-astro.science'> Jason Tumlinson</a> (STScI). Uses graphical elements from <a href="http://www.granttremblay.com">Grant Tremblay</a> (CfA). 
+Credits: adapted from "The Next Great Observatories: How Can We Get There?", an APC white paper submitted to Astro2020 (<a href="http://ui.adsabs.harvard.edu/abs/2019BAAS...51g.173T/abstract">link</a>). Code in python / bokeh by <a href='http://jt-astro.science'> Jason Tumlinson</a> (STScI). Uses graphical elements from <a href="http://www.granttremblay.com">Grant Tremblay</a> (CfA). 
 </div>
 <div align='center'>
 <br> <br> 
@@ -48,7 +55,7 @@ a_source = ColumnDataSource(data = {'x_label':[2040], 'y_label':[2500], 'x_year'
 
 
 p0 = figure(x_range=(2020, 2061), y_range=(0, 2800), plot_width=850, plot_height=400)
-p0.grid.minor_grid_line_color = '#eeeeee'
+p0.grid.minor_grid_line_color = '#222222'
 p0.xaxis.axis_label = "Year"
 p0.yaxis.axis_label = "Budget in Millions"
 p0.varea_stack(stackers=['JWST', 'WFIRST', 'M1', 'M2', 'M3', 'APD'], x='Year', 
@@ -59,8 +66,8 @@ p0.legend.items.reverse()
 p0.legend.label_text_font_size = "7pt"
 p0.legend.location = "top_left"
 p0.legend.orientation = "horizontal"
-p0.text(x='x_label', y='y_label', text='label_text', source=a_source)  
-p0.text(x='x_year', y='y_year', text='year_text', source=a_source)  
+p0.text(x='x_label', y='y_label', text='label_text', source=a_source, color='#ffffff')  
+p0.text(x='x_year', y='y_year', text='year_text', source=a_source, color='#ffffff')  
 p0.inverted_triangle("launch_years", "y_values", source=launch_source, color="color", alpha=1.0, size=20) 
 p0.multi_line("x", "y", color="color", source=ops_source, line_width=5, alpha=0.7) 
 
