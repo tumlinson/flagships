@@ -54,7 +54,7 @@ p0.yaxis.axis_label = "Budget in Millions"
 p0.varea_stack(stackers=['JWST', 'WFIRST', 'M1', 'M2', 'M3', 'APD'], x='Year', 
               color=['#CB297B', '#B51700', '#0098FF','#61D836','#F8BA00', '#DEDEDE'], 
               legend_label=['JWST', 'WFIRST', 'M1','M2','M3', 'APD'], 
-              alpha=[ 1., 0.5, 1., 1., 1., 0.5], source=budget_source)
+              alpha=[ 0.7, 0.7, 0.7, 0.7, 0.7, 0.7], source=budget_source)
 p0.legend.items.reverse()
 p0.legend.label_text_font_size = "7pt"
 p0.legend.location = "top_left"
@@ -156,8 +156,8 @@ for e in [afwslider, m1slider, m2slider, m3slider, lifeslider]:
     e.on_change('value', update_budget)
 
 # Set up layouts and add to document
-mission_inputs = row(afwslider, lifeslider, background='#DDDDDD') 
-mission_budgets = row(m1slider, m2slider, m3slider, background='#DDDDDD')
+mission_inputs = row(afwslider, lifeslider, background='rgba(0, 0, 0, 0.0)') 
+mission_budgets = row(m1slider, m2slider, m3slider, background='rgba(0, 0, 0, 0.0)')
 
 
 div = Div(text=info(), width=850, height=300)

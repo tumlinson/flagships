@@ -1,72 +1,27 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Great Observatories</title>
+        <title>Flagship Mission Affordability Calculator</title>
         {{ bokeh_css }}
         {{ bokeh_js }}
 
         <style>
          {% include 'styles.css' %}
-        </style>
-
- 
-        <style>
-
-img {
-    vertical-align: text-center;
-}
-.bk-root .bk-widget .bk-slider-horizontal {
-  width: 93%;
-  margin-left: 8px;
-  height: 10px;
-}
-.bk-root .bk-bs-nav-tabs {
-  border-bottom: 9px solid #ddd;
-  font-family: 'Helvetica';
-  font-size: 94pt 
-}
-.bk-root .bk-ui-slider { 
-  font-family: 'Helvetica';
-  font-color: '#FFFFFF';
-}
-.bk-root .bk-tab-parent {
-  color: #FFF; 
-}
-.bk-root .bk-slider-parent input[type="text"] {
-  display: inline-block;
-  border: 0;
-  font-weight: 600;
-  margin-left: 4px;
-  color: #FFF; 
-  font-size: 20px;
-  vertical-align: text-bottom;
-  padding: 0;
-  min-width: 20px;
-  font-family: 'Helvetica';
-  /* Add in defaults to counteract bokehplots.com css */
-  background-color: inherit;
-  border-radius: inherit;
-  box-shadow: inherit;
-  box-sizing: inherit;
-  margin-bottom: inherit;
-  transition: inherit;
-  width: inherit;
-}
-.bk-root .bk-ui-slider .bk-ui-slider-handle {
-  position: absolute;
-  z-index: 2;
-  width: 1.2em;
-  height: 1.2em;
-  cursor: default;
-  -ms-touch-action: none;
-  touch-action: none;
-}
+         body {
+         font-family: 'Noto Sans', sans-serif;
+          -webkit-font-smoothing: antialiased;
+           text-rendering: optimizeLegibility;
+           color: rgb(255, 255, 255); 
+           background: #2F2F2F;
+           background-color: #000000; 
+           background-image: url(http://www.jt-astro.science/background20.png); 
+           background-repeat: no-repeat, repeat;
+           background-position: top;
+           margin-top: 0px;
+             }
         </style>
     </head>
-
 
     <div class="container", text-align: center>
       <div class="header clearfix">
@@ -75,20 +30,18 @@ img {
           </ul>
         </nav>
 
-        <p><h1 class="text-muted">    </p> 
+        <p><h1 class="text-muted"> </p> 
         <p> </p> 
+        <br>       
         <br> 
+
         <br> 
       </div>
 
     <body>
-        <br> 
-        <br> 
-        <br> 
      <center>
         {{ plot_div|indent(8) }}
         {{ plot_script|indent(8) }}
      </center>
-<div align='center'>
     </body>
 </html>
