@@ -43,33 +43,33 @@ Return to <a href="http://www.greatobservatories.org">http://www.greatobservator
 default = Table.read('budget-tool/data/slow_ramp.txt', format='ascii')   
 df0 = default.to_pandas()
 df0['Checksum'] = df0['M1'] + df0['M2'] + df0['M3'] + df0['APD'] + df0['JWST'] + df0['WFIRST']
+df0['Probes'] = 150. 
 budget_source = ColumnDataSource(df0)
 launch_source = ColumnDataSource(data = {'launch_years': [2042, 2053, 2061], \
     'y_values': [2000,2100,2200], 'color':['#0098FF','#61D836','#F8BA00']}) 
 ops_source = ColumnDataSource(data = {'x':[[2042, 2052],[2053, 2063], [2061, 2071]], 
                                       'y':[[2000,2000],[2100,2100], [2200,2200] ], 
                                       'color': ['#0098FF','#61D836','#F8BA00']})
-a_source = ColumnDataSource(data = {'x_label':[2040], 'y_label':[2500], 'x_year':[2056], 'y_year':[2500], 
-            'label_text':['Years of Simultaneous Operation:'], 'year_text': ['0']})
-
+a_source = ColumnDataSource(data = {'x_label':[2045], 'y_label':[2500], 'x_year':[2043.5], 'y_year':[2500], 
+            'label_text':['years of simultaneous operation'], 'year_text': ['0']})
 
 
 p0 = figure(x_range=(2020, 2061), y_range=(0, 2800), plot_width=850, plot_height=400)
-p0.grid.minor_grid_line_color = '#222222'
+p0.grid.minor_grid_line_color = '#CCCCCC'
 p0.xaxis.axis_label = "Year"
 p0.yaxis.axis_label = "Budget in Millions"
-p0.varea_stack(stackers=['JWST', 'WFIRST', 'M1', 'M2', 'M3', 'APD'], x='Year', 
-              color=['#CB297B', '#B51700', '#0098FF','#61D836','#F8BA00', '#DEDEDE'], 
-              legend_label=['JWST', 'WFIRST', 'M1','M2','M3', 'APD'], 
-              alpha=[ 0.7, 0.7, 0.7, 0.7, 0.7, 0.7], source=budget_source)
+p0.varea_stack(stackers=['JWST', 'WFIRST', 'M1', 'M2', 'M3', 'Probes', 'APD'], x='Year', 
+              color=['#CB297B', '#B51700', '#0098FF','#61D836','#F8BA00', '#BCBCBC', '#DEDEDE'], 
+              legend_label=['JWST', 'WFIRST', 'M1','M2','M3', 'Probes', 'APD'], 
+              alpha=[ 0.9, 0.9, 1.0, 1.0, 1.0, 1.0, 0.9], source=budget_source)
 p0.legend.items.reverse()
 p0.legend.label_text_font_size = "7pt"
 p0.legend.location = "top_left"
 p0.legend.orientation = "horizontal"
-p0.text(x='x_label', y='y_label', text='label_text', source=a_source, color='#ffffff')  
-p0.text(x='x_year', y='y_year', text='year_text', source=a_source, color='#ffffff')  
+p0.text(x='x_label', y='y_label', text='label_text', source=a_source, color='#000000')  
+p0.text(x='x_year', y='y_year', text='year_text', source=a_source, color='#000000')  
 p0.inverted_triangle("launch_years", "y_values", source=launch_source, color="color", alpha=1.0, size=20) 
-p0.multi_line("x", "y", color="color", source=ops_source, line_width=5, alpha=0.7) 
+p0.multi_line("x", "y", color="color", source=ops_source, line_width=5, alpha=1.0) 
 
 # Set up slide control widgets
 afwslider = Slider(title="Flagship Wedge ($B)", value=0.6, start=0.5, end=2., step=0.1, width=400)
