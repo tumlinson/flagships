@@ -39,10 +39,10 @@ p0.multi_line("x", "y", color="color", source=ops_source, line_width=5, alpha=0.
 
 # Set up slide control widgets
 afwslider = Slider(title="Flagship Wedge ($B)", value=0.6, start=0.5, end=2., step=0.1, width=320)
-lifeslider = Slider(title="Mission Lifetimes (Yr)", value=10., start=5., end=20., step=1., width=320)
-m1slider = Slider(title="Mission 1 ($B)", value=10.0, start=5.0, end=20.0, step=0.5, width=160)
-m2slider = Slider(title="Mission 2 ($B)", value=6.0, start=5.0, end=20.0, step=0.5, width=160)
-m3slider = Slider(title="Mission 3 ($B)", value=5.0, start=5.0, end=20.0, step=0.5, width=160)
+lifeslider = Slider(title="Mission Lifetimes (Yr)", value=10., start=5., end=30., step=1., width=320)
+m1slider = Slider(title="Mission 1 ($B)", value=10.0, start=3.0, end=20.0, step=0.5, width=160)
+m2slider = Slider(title="Mission 2 ($B)", value=6.0, start=3.0, end=20.0, step=0.5, width=160)
+m3slider = Slider(title="Mission 3 ($B)", value=5.0, start=3.0, end=20.0, step=0.5, width=160)
 
 def mission1_wedge(afw, m1):
     N1 = np.round((m1 - 0.6 * (afw-0.02)) / (afw-0.02)) 

@@ -10,11 +10,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
   /*background-color: #000; */ 
-  background-color: #1D1B4D; 
-  background-image: url(http://jt-astro.science/banner-luvoir1.png);
+  background-color: #000000; 
+  background-image: url(http://www.jt-astro.science/Banner.001.png); 
+  background-repeat: no-repeat, repeat;
   background-position: top;
-  background-repeat: repeat-x;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 img {
@@ -129,6 +129,7 @@ h6 {
   background-color: #FF0000;
   font-size:20px;
   font-family: Helvetica; 
+  font-color: #FFFFFF; 
   color:#f00;
 }
 /* This controls sliders, etc if they are inside tabs */ 
