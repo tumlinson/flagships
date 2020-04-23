@@ -19,4 +19,4 @@ attrs:
         text_color: "white"
     Tab: 
         text_font: 'PT Serif' 
-        text_color: 'white'
+        text_color: 'green'

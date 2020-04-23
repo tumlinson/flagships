@@ -7,40 +7,10 @@ from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Label, Slider, TextInput, Title, Text, Tabs, Panel, Div
 from bokeh.plotting import figure, output_file, show
 
-def info(): 
-
-    str = """
-<div align="left">
-This simple tool visualizes the budget scenarios that might support The Next Great Observatories. 
-<br>The basic assumptions are:
-<br>(1) the initial 'flagship wedge is the current sum of WFIRST + JWST ($700 M in FY20).
-<br>(2) the new 'flagship wedge' controlled by the slider begins in 2026. 
-<br>(3) the current wedge for the 'rest of APD', not including JWST and WFIRST development costs, remains constant at $700M. 
-<br>(4) all calculations are done in constant, FY20 dollars without inflation.  
-<br>
-<br> These hypothetical scenarios are meant to help the user explore how NASA Astrophysics 
-funding might be able to support three long-lived flagship observatories that operate 
-simultaneously. The launch years of each mission are marked by the inverted triangles, 
-and the horizontal bars show each mission's operational lifetime. These can be any 
-missions you like, in any order, at any price. The "Years of Simultaneous Operation" 
-reported measures the number of years from the launch of Mission 3 to the end of 
-Mission 1's operational lifetime, during which all three Observatories are available. 
-
-<br> <br> 
-You are welcome to save plots from this tool using the "disk" icon in the bokeh 
-toolbar and use them in any venue with credit to "Jason Tumlinson/Grant Tremblay/www.greatobservatories.org".
-<br> <br> 
-Credits: adapted from "The Next Great Observatories: How Can We Get There?", an APC white paper submitted to Astro2020 (<a href="http://ui.adsabs.harvard.edu/abs/2019BAAS...51g.173T/abstract">link</a>). Code in python / bokeh by <a href='http://jt-astro.science'> Jason Tumlinson</a> (STScI). Uses graphical elements from <a href="http://www.granttremblay.com">Grant Tremblay</a> (CfA). 
-</div>
-<div align='center'>
-<br> <br> 
-Return to <a href="http://www.greatobservatories.org">http://www.greatobservatories.org</a> 
-</div>
-""" 
-    return str 
+import info
 
 #read in budget data
-default = Table.read('budget-tool/data/slow_ramp.txt', format='ascii')   
+default = Table.read('flagship_affordability/data/slow_ramp.txt', format='ascii')   
 df0 = default.to_pandas()
 df0['Checksum'] = df0['M1'] + df0['M2'] + df0['M3'] + df0['APD'] + df0['JWST'] + df0['WFIRST']
 df0['Probes'] = 150. 
@@ -72,8 +42,8 @@ p0.inverted_triangle("launch_years", "y_values", source=launch_source, color="co
 p0.multi_line("x", "y", color="color", source=ops_source, line_width=5, alpha=1.0) 
 
 # Set up slide control widgets
-afwslider = Slider(title="Flagship Wedge ($B)", value=0.6, start=0.5, end=2., step=0.1, width=400)
-lifeslider = Slider(title="Mission Lifetimes (Yr)", value=10., start=5., end=30., step=1., width=400)
+afwslider = Slider(title="Flagship Wedge ($B)", value=0.6, start=0.5, end=2., step=0.1, width=410)
+lifeslider = Slider(title="Mission Lifetimes (Yr)", value=10., start=5., end=30., step=1., width=410)
 m1slider = Slider(title="Mission 1 ($B)", value=10.0, start=3.0, end=20.0, step=0.5, width=270)
 m2slider = Slider(title="Mission 2 ($B)", value=6.0, start=3.0, end=20.0, step=0.5, width=270)
 m3slider = Slider(title="Mission 3 ($B)", value=5.0, start=3.0, end=20.0, step=0.5, width=270)
@@ -152,7 +122,7 @@ def update_budget(attrname, old, new):    # master callback function
     print("Number of Years of Overlapping Operations: ", years_of_joint_operations) 
     a_source.data['year_text'] = [str(years_of_joint_operations)]
 
-def update_lifetime(attrname, old, new):    # master callback function 
+def update_lifetime(attrname, old, new):
     ops_source.data['x'] = [[df0.iloc[int(m1index), 0], df0.iloc[int(m1index), 0]+lifeslider.value], [df0.iloc[int(m2index), 0], df0.iloc[int(m2index), 0]+lifeslider.value], [df0.iloc[int(m3index), 0], df0.iloc[int(m3index), 0]+lifeslider.value]]
 
 m1index = mission1_wedge(afwslider.value, m1slider.value)
@@ -162,17 +132,14 @@ m3index = mission3_wedge(afwslider.value, m3slider.value, m2index)
 for e in [afwslider, m1slider, m2slider, m3slider, lifeslider]:
     e.on_change('value', update_budget)
 
-# Set up layouts and add to document
 mission_inputs = row(afwslider, lifeslider, background='rgba(0, 0, 0, 0.0)') 
 mission_budgets = row(m1slider, m2slider, m3slider, background='rgba(0, 0, 0, 0.0)')
 
-
-div = Div(text=info(), width=850, height=300)
+div = Div(text=info.info(), width=850, height=300)
 docs = Panel(child=div, title='Info') 
 
 results = Panel(child = column(mission_inputs, mission_budgets, p0), title='Results')
 tabs = Tabs(tabs=[results, docs]) 
 
 curdoc().add_root(tabs) 
-#curdoc().add_root(   column(mission_inputs, mission_budgets, p0)   )
 curdoc().title = "Flagship Mission Affordability Calculator"
